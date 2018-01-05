@@ -33,6 +33,7 @@ public class NEEssentials extends JavaPlugin {
         this.getCommand("back").setExecutor(new BackCommand());
         this.getCommand("ban").setExecutor(new BanCommand());
         this.getCommand("broadcast").setExecutor(new BroadcastCommand());
+        this.getCommand("chat").setExecutor(new ChatCommand());
         this.getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
         this.getCommand("craft").setExecutor(new CraftCommand());
         this.getCommand("deop").setExecutor(new DeOPCommand());
