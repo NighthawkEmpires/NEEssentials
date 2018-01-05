@@ -1,0 +1,156 @@
+name: NEEssentials
+main: net.nighthawkempires.essentials.NEEssentials
+version: 1.0_a
+depend: [NECore]
+authors: [NoneVale_]
+description: Essentials plugin for Nighthawk Empires.
+commands:
+  afk:
+    usage: /<command>
+    description: AFK command for NEEssentials.
+  back:
+    usage: /<command>
+    description: Back command for NEEssentials.
+  ban:
+    usage: /<command>
+    description: Ban command for NEEssentials.
+  broadcast:
+    usage: /<command>
+    description: Broadcast command for NEEssentials.
+  chat:
+    usage: /<command>
+    description: Chat command for NEEssentials.
+  clearinventory:
+    usage: /<command>
+    aliases: [clear, clearinv, ci]
+    description: Clear Inventory command for NEEssentials.
+  craft:
+    usage: /<command>
+    aliases: [crafting]
+    description: Craft command for NEEssentials.
+  deop:
+    usage: /<command>
+    description: DeOP commnd for NEEssentials.
+  disableenddragon:
+    usage: /<command>
+    aliases: [ded]
+    description: Disable End Dragon command for NEEssentials.
+  enderchest:
+    usage: /<command>
+    aliases: [echest, endchest]
+    description: Ender Chest command for NEEssentials.
+  feed:
+    usage: /<command>
+    description: Feed command for NEEssentials.
+  fly:
+    usage: /<command>
+    description: Fly command for NEEssentials.
+  freeze:
+    usage: /<command>
+    description: Freezer command for NEEssentials.
+  gamemode:
+    usage: /<command>
+    aliases: [gm, gamem]
+    description: Gamemode command for NEEssentials.
+  godmode:
+    usage: /<command>
+    aliases: [god]
+    description: Godmode command for NEEssentials.
+  heal:
+    usage: /<command>
+    description: Heal command for NEEssentials.
+  help:
+    usage: /<command>
+    description: Help command for NEEssentials.
+  home:
+    usage: /<command>
+    description: Home command for NEEssentials.
+  inventory:
+    usage: /<command>
+    aliases: [inv]
+    description: Inventory command for NEEssentials.
+  kick:
+    usage: /<command>
+    description: Kick command for NEEssentials.
+  kill:
+    usage: /<command>
+    description: Kill command for NEEssentials.
+  kits:
+    usage: /<command>
+    aliases: [kit]
+    description: Kits command for NEEssentials.
+  me:
+    usage: /<command>
+    description: Me command for NEEssentials.
+  message:
+    usage: /<command>
+    aliases: [pm, whisper, tell, msg]
+    description: Message command for NEEssentials.
+  mute:
+    usage: /<command>
+    description: Mute command for NEEssentials.
+  nickname:
+    usage: /<command>
+    aliases: [nick]
+    description: NickName command for NEEssentials.
+  op:
+    usage: /<command>
+    description: OP command for NEEssentials.
+  rename:
+    usage: /<command>
+    description: Rename command for NEEssentials.
+  reply:
+    usage: /<command>
+    aliases: [r]
+    description: Reply command for NEEssentials.
+  sayas:
+    usage: /<command>
+    description: Say As command for NEEssentials.
+  scoreboards:
+    usage: /<command>
+    aliases: [scoreboard]
+    description: Scoreboards command for NEEssentials.
+  spawn:
+    usage: /<command>
+    description: Spawn command for NEEssentials.
+  spawnmob:
+    usage: /<command>
+    aliases: [smob, summon]
+    description: Spawn Mob command for NEEssentials.
+  speed:
+    usage: /<command>
+    description: Speed command for NEEssentials.
+  sudo:
+    usage: /<command>
+    description: Sudo command for NEEssentials.
+  time:
+    usage: /<command>
+    description: Time command for NEEssentials.
+  tokens:
+    usage: /<command>
+    description: Tokens command for NEEssentials.
+  tpaccept:
+    usage: /<command>
+    description: TPAccept command for NEEssentials.
+  tpa:
+    usage: /<command>
+    description: TPA command for NEEssentials.
+  tp:
+    usage: /<command>
+    description: TP command for NEEssentials.
+  unban:
+    usage: /<command>
+    aliases: [pardon]
+    description: Unban command for NEEssentials.
+  unmute:
+    usage: /<command>
+    description: Unmute command for NEEssentials.
+  vanish:
+    usage: /<command>
+    description: Vanish command for NEEssentials.
+  warp:
+    usage: /<command>
+    description: Warp command for NEEssentials.
+  weather:
+    usage: /<command>
+    description: Message command for NEEssentials.
