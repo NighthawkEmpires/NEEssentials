@@ -17,9 +17,6 @@ commands:
   broadcast:
     usage: /<command>
     description: Broadcast command for NEEssentials.
-  chat:
-    usage: /<command>
-    description: Chat command for NEEssentials.
   clearinventory:
     usage: /<command>
     aliases: [clear, clearinv, ci]
