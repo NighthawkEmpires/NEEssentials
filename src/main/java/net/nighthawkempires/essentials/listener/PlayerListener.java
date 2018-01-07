@@ -24,6 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.*;
@@ -148,6 +149,27 @@ public class PlayerListener implements Listener {
                 }, 20, 20);
             }
             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "Sending all players to hub!"));
+        }
+    }
+
+    @EventHandler
+    public void onChange(SignChangeEvent event) {
+        Player player = event.getPlayer();
+
+        if (event.getLine(0) != null) {
+            event.setLine(0, ChatColor.translateAlternateColorCodes('&', event.getLine(0)));
+        }
+
+        if (event.getLine(1) != null) {
+            event.setLine(1, ChatColor.translateAlternateColorCodes('&', event.getLine(1)));
+        }
+
+        if (event.getLine(2) != null) {
+            event.setLine(2, ChatColor.translateAlternateColorCodes('&', event.getLine(2)));
+        }
+
+        if (event.getLine(3) != null) {
+            event.setLine(3, ChatColor.translateAlternateColorCodes('&', event.getLine(3)));
         }
     }
 }
