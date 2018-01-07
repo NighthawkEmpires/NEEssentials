@@ -78,30 +78,6 @@ public class PlayerListener implements Listener {
             }
         }
 
-        if (!player.getUniqueId().toString().equals("1310f910-9480-49bb-9955-c122154cfe1d") || !player.getUniqueId().toString().equals("12ea1659-5da0-4ec0-9c8d-15350261e2d5")
-                || !player.getUniqueId().toString().equals("575ca289-a191-4078-88b1-a744991d85d9")) {
-            if (player.getLocation().getBlockX() >= 15000 || player.getLocation().getBlockX() <= Integer.valueOf("-15000")) {
-                if (!CooldownUtil.cooledDown(player.getUniqueId(),"border")) {
-                    return;
-                }
-                player.sendMessage(Lang.CHAT_TAG.getServerChatTag() + ChatColor.RED + "You are not allowed to go past the world's border!");
-                player.setVelocity(player.getLocation().getDirection().multiply(-0.5).setX(-1.5).setY(0.5));
-                CooldownUtil.setCooldown(player.getUniqueId(), "border", 3);
-                if (player.getLocation().getBlockX() >= 15010 || player.getLocation().getBlockX() <= Integer.valueOf("-15010")) {
-                    player.teleport(new Location(player.getWorld(), (player.getLocation().getBlockX() >= 15010 ? 14990 : Integer.valueOf("-14990")), player.getLocation().getBlockY(), player.getLocation().getBlockZ()));
-                }
-            } else if (player.getLocation().getBlockZ() >= 15000 || player.getLocation().getBlockZ() <= Integer.valueOf("-15000")) {
-                if (!CooldownUtil.cooledDown(player.getUniqueId(),"border")) {
-                    return;
-                }
-                player.sendMessage(Lang.CHAT_TAG.getServerChatTag() + ChatColor.RED + "You are not allowed to go past the world's border!");
-                player.setVelocity(player.getLocation().getDirection().multiply(-0.5).setZ(-1.5).setY(0.5));
-                if (player.getLocation().getBlockZ() >= 15010 || player.getLocation().getBlockZ() <= Integer.valueOf("-15010")) {
-                    player.teleport(new Location(player.getWorld(), player.getLocation().getBlockX(), player.getLocation().getBlockY(), (player.getLocation().getBlockZ() >= 15010 ? 14990 : Integer.valueOf("-14990"))));
-                }
-            }
-        }
-
         int task = Bukkit.getScheduler().scheduleSyncDelayedTask(NEEssentials.getPlugin(), () -> {
             if (event.getTo() == event.getFrom()) {
                 NEEssentials.getData().afk.add(player.getUniqueId());
@@ -114,40 +90,6 @@ public class PlayerListener implements Listener {
             Bukkit.getScheduler().cancelTask(taskMap.get(player.getUniqueId()));
         }
         taskMap.put(player.getUniqueId(), task);
-        for (Entity entity : player.getNearbyEntities(50, 50, 50)) {
-            if (entity instanceof EnderDragon) {
-                PotionUtil.applyPotion((LivingEntity) entity, PotionEffectType.SLOW, 255, 255);
-            }
-        }
-    }
-
-    @EventHandler
-    public void onDeath(UserDeathEvent event) {
-        Player player = event.getPlayer();
-        Location location = player.getLocation();
-        player.setCanPickupItems(false);
-
-        if (LocationUtil.hasSpawn(player.getWorld())) {
-            player.teleport(LocationUtil.getSpawn(player.getWorld()));
-        }
-        player.setHealth(player.getMaxHealth());
-        player.setFireTicks(0);
-        player.setFoodLevel(20);
-
-        for (ItemStack itemStack : player.getInventory().getContents()) {
-            if (itemStack == null) {
-                //nothing
-            } else {
-                location.getWorld().dropItemNaturally(location, itemStack);
-            }
-        }
-
-        player.getInventory().clear();
-        player.getInventory().setArmorContents(null);
-        player.getInventory().setItemInOffHand(null);
-        player.getInventory().setItemInMainHand(null);
-
-        player.setCanPickupItems(true);
     }
 
     @EventHandler
