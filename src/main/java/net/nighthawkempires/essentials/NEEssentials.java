@@ -60,6 +60,7 @@ public class NEEssentials extends JavaPlugin {
         this.getCommand("reply").setExecutor(new ReplyCommand());
         this.getCommand("sayas").setExecutor(new SayAsCommand());
         this.getCommand("scoreboards").setExecutor(new ScoreboardsCommand());
+        this.getCommand("slap").setExecutor(new SlapCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getCommand("spawnmob").setExecutor(new SpawnMobCommand());
         this.getCommand("speed").setExecutor(new SpeedCommand());

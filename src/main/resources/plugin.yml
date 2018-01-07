@@ -110,6 +110,9 @@ commands:
     usage: /<command>
     aliases: [scoreboard]
     description: Scoreboards command for NEEssentials.
+  slap:
+    usage: /<command>
+    description: Slap command for NEEssentials.
   spawn:
     usage: /<command>
     description: Spawn command for NEEssentials.
