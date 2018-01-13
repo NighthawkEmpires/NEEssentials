@@ -2,7 +2,6 @@ package net.nighthawkempires.essentials.commands;
 
 import net.nighthawkempires.core.NECore;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -16,7 +15,6 @@ public class ScoreboardsCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            User user = NECore.getUserManager().getUser(player.getUniqueId());
 
             if (!player.hasPermission("ne.scoreboards")) {
                 player.sendMessage(Lang.NO_PERM.getServerMessage());

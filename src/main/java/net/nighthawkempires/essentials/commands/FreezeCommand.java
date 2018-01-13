@@ -2,7 +2,7 @@ package net.nighthawkempires.essentials.commands;
 
 import net.nighthawkempires.core.NECore;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
+import net.nighthawkempires.core.users.UserModel;
 import net.nighthawkempires.core.utils.PotionUtil;
 import net.nighthawkempires.essentials.NEEssentials;
 import org.bukkit.Bukkit;
@@ -19,7 +19,6 @@ public class FreezeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            User user = NECore.getUserManager().getUser(player.getUniqueId());
 
             if (!player.hasPermission("ne.freeze")) {
                 player.sendMessage(Lang.NO_PERM.getServerMessage());

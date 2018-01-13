@@ -1,9 +1,7 @@
 package net.nighthawkempires.essentials.commands;
 
 import com.google.common.collect.Lists;
-import net.nighthawkempires.core.NECore;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -19,7 +17,6 @@ public class WeatherCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            User user = NECore.getUserManager().getUser(player.getUniqueId());
 
             if (!player.hasPermission("ne.weather")) {
                 player.sendMessage(Lang.NO_PERM.getServerMessage());

@@ -2,7 +2,7 @@ package net.nighthawkempires.essentials.commands;
 
 import net.nighthawkempires.core.NECore;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
+import net.nighthawkempires.core.users.UserModel;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -17,7 +17,7 @@ public class TokensCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            User user = NECore.getUserManager().getUser(player.getUniqueId());
+            UserModel user = NECore.getUserRegistry().getUser(player.getUniqueId());
 
             if (!player.hasPermission("ne.tokens")) {
                 player.sendMessage(Lang.NO_PERM.getServerMessage());
@@ -84,19 +84,19 @@ public class TokensCommand implements CommandExecutor {
                 } else if (args[0].toLowerCase().equals("show")) {
                     String name = args[1];
 
-                    if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                    if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                         player.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                         return true;
                      }
 
                      if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                         Player target = Bukkit.getPlayer(name);
-                        User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                         player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.BLUE + target.getName() + ChatColor.GRAY + " has " + ChatColor.GOLD + tuser.getTokens() + ChatColor.GRAY + " tokens."));
                         return true;
                      } else {
                         OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                        User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                         UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                         player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.BLUE + target.getName() + ChatColor.GRAY + " has " + ChatColor.GOLD + tuser.getTokens() + ChatColor.GRAY + " tokens."));
                         return true;
                     }
@@ -111,21 +111,21 @@ public class TokensCommand implements CommandExecutor {
 
                         String name = args[2];
 
-                        if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                        if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                             player.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                             return true;
                         }
 
                         if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                             Player target = Bukkit.getPlayer(name);
-                            User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens() + value);
                             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have added " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " to " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
                             return true;
                         } else {
                             OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                            User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens() + value);
                             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have added " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " to " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
@@ -141,21 +141,21 @@ public class TokensCommand implements CommandExecutor {
 
                         String name = args[2];
 
-                        if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                        if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                             player.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                             return true;
                         }
 
                         if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                             Player target = Bukkit.getPlayer(name);
-                            User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens() - value);
                             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have removed " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " from " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
                             return true;
                         } else {
                             OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                            User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens()-value);
                             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have removed " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " from " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
@@ -171,21 +171,21 @@ public class TokensCommand implements CommandExecutor {
 
                         String name = args[2];
 
-                        if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                        if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                             player.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                             return true;
                         }
 
                         if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                             Player target = Bukkit.getPlayer(name);
-                            User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(value);
                             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have set " + ChatColor.BLUE + target.getName() + "'s " + ChatColor.GRAY
                                     + "token balance to " + ChatColor.GOLD + value + ChatColor.GRAY + " tokens."));
                             return true;
                         } else {
                             OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                            User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(value);
                             player.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have set " + ChatColor.BLUE + target.getName() + "'s " + ChatColor.GRAY
                                     + "token balance to " + ChatColor.GOLD + value + ChatColor.GRAY + " tokens."));
@@ -239,19 +239,19 @@ public class TokensCommand implements CommandExecutor {
                 } else if (args[0].toLowerCase().equals("show")) {
                     String name = args[1];
 
-                    if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                    if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                         console.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                         return true;
                     }
 
                     if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                         Player target = Bukkit.getPlayer(name);
-                        User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                         console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.BLUE + target.getName() + ChatColor.GRAY + " has " + ChatColor.GOLD + tuser.getTokens() + ChatColor.GRAY + " tokens."));
                         return true;
                     } else {
                         OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                        User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                         console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.BLUE + target.getName() + ChatColor.GRAY + " has " + ChatColor.GOLD + tuser.getTokens() + ChatColor.GRAY + " tokens."));
                         return true;
                     }
@@ -266,21 +266,21 @@ public class TokensCommand implements CommandExecutor {
 
                         String name = args[2];
 
-                        if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                        if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                             console.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                             return true;
                         }
 
                         if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                             Player target = Bukkit.getPlayer(name);
-                            User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens() + value);
                             console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have added " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " to " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
                             return true;
                         } else {
                             OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                            User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens() + value);
                             console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have added " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " to " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
@@ -296,21 +296,21 @@ public class TokensCommand implements CommandExecutor {
 
                         String name = args[2];
 
-                        if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                        if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                             console.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                             return true;
                         }
 
                         if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                             Player target = Bukkit.getPlayer(name);
-                            User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens() - value);
                             console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have removed " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " from " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
                             return true;
                         } else {
                             OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                            User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(tuser.getTokens()-value);
                             console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have removed " + ChatColor.GOLD + value + ChatColor.GRAY
                                     + " from " + ChatColor.BLUE + target.getName() + "''s " + ChatColor.GRAY + "token balance."));
@@ -326,21 +326,21 @@ public class TokensCommand implements CommandExecutor {
 
                         String name = args[2];
 
-                        if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                        if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                             console.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                             return true;
                         }
 
                         if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                             Player target = Bukkit.getPlayer(name);
-                            User tuser = NECore.getUserManager().getUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(value);
                             console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have set " + ChatColor.BLUE + target.getName() + "'s " + ChatColor.GRAY
                                     + "token balance to " + ChatColor.GOLD + value + ChatColor.GRAY + " tokens."));
                             return true;
                         } else {
                             OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                            User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                            UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                             tuser.setTokens(value);
                             console.sendMessage(Lang.CHAT_TAG.getServerMessage(ChatColor.GRAY + "You have set " + ChatColor.BLUE + target.getName() + "'s " + ChatColor.GRAY
                                     + "token balance to " + ChatColor.GOLD + value + ChatColor.GRAY + " tokens."));

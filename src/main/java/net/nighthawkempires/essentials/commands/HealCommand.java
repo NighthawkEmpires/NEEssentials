@@ -1,9 +1,8 @@
 package net.nighthawkempires.essentials.commands;
 
 import net.nighthawkempires.core.NECore;
-import net.nighthawkempires.core.chat.ChatType;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
+import net.nighthawkempires.core.users.UserModel;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -17,7 +16,6 @@ public class HealCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            User user = NECore.getUserManager().getUser(player.getUniqueId());
 
             if (!player.hasPermission("ne.heal")) {
                 player.sendMessage(Lang.NO_PERM.getServerMessage());

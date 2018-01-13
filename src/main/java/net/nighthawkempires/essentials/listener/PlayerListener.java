@@ -4,41 +4,20 @@ import com.google.common.collect.Maps;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import net.nighthawkempires.core.NECore;
-import net.nighthawkempires.core.events.UserDeathEvent;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
-import net.nighthawkempires.core.utils.CooldownUtil;
-import net.nighthawkempires.core.utils.LocationUtil;
-import net.nighthawkempires.core.utils.MathUtil;
-import net.nighthawkempires.core.utils.PotionUtil;
+import net.nighthawkempires.core.users.UserModel;
 import net.nighthawkempires.essentials.NEEssentials;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Door;
-import org.bukkit.potion.PotionEffectType;
 
-import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentMap;
 
-import static org.bukkit.event.entity.EntityDamageEvent.DamageCause.ENTITY_ATTACK;
-import static org.bukkit.event.entity.EntityDamageEvent.DamageCause.MAGIC;
-import static org.bukkit.event.entity.EntityDamageEvent.DamageCause.PROJECTILE;
 
 public class PlayerListener implements Listener {
 
@@ -96,7 +75,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        User user = NECore.getUserManager().getUser(player.getUniqueId());
+        UserModel user = NECore.getUserRegistry().getUser(player.getUniqueId());
 
         if (NEEssentials.getData().flyMode.contains(player.getUniqueId())) {
             player.setFlying(true);

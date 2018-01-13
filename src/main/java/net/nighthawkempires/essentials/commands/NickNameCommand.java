@@ -2,7 +2,7 @@ package net.nighthawkempires.essentials.commands;
 
 import net.nighthawkempires.core.NECore;
 import net.nighthawkempires.core.language.Lang;
-import net.nighthawkempires.core.users.User;
+import net.nighthawkempires.core.users.UserModel;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -17,7 +17,7 @@ public class NickNameCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            User user = NECore.getUserManager().getUser(player.getUniqueId());
+            UserModel user = NECore.getUserRegistry().getUser(player.getUniqueId());
 
             if (!player.hasPermission("ne.nickname")) {
                 player.sendMessage(Lang.NO_PERM.getServerMessage());
@@ -63,14 +63,14 @@ public class NickNameCommand implements CommandExecutor {
                 if (args[0].toLowerCase().equals("show")) {
                     String name = args[1];
 
-                    if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                    if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                         player.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                         return true;
                     }
 
                     if (!Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                         OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                        User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                         if (tuser.getDisplayName().equals(target.getName())) {
                             player.sendMessage(Lang.CHAT_TAG.getServerChatTag() + ChatColor.RED + target.getName() + " does not have a nickname set.");
                             return true;
@@ -81,7 +81,7 @@ public class NickNameCommand implements CommandExecutor {
                         return true;
                     } else {
                         Player target = Bukkit.getPlayer(name);
-                        User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
                         if (tuser.getDisplayName().equals(target.getName())) {
                             player.sendMessage(Lang.CHAT_TAG.getServerChatTag() + ChatColor.RED + target.getName() + " does not have a nickname set.");
                             return true;
@@ -101,14 +101,14 @@ public class NickNameCommand implements CommandExecutor {
                         return true;
                     }
 
-                    if (!NECore.getUserManager().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
+                    if (!NECore.getUserRegistry().userExists(Bukkit.getOfflinePlayer(name).getUniqueId())) {
                         player.sendMessage(Lang.PLAYER_NULL.getServerMessage());
                         return true;
                     }
 
                     if (!Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(name))) {
                         OfflinePlayer target = Bukkit.getOfflinePlayer(name);
-                        User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
 
                         tuser.setDisplayName(nick);
                         player.sendMessage(Lang.CHAT_TAG.getServerChatTag() + ChatColor.GRAY + "You set " + ChatColor.BLUE + target.getName() + "'s " + ChatColor.GRAY + "nickname to "
@@ -116,7 +116,7 @@ public class NickNameCommand implements CommandExecutor {
                         return true;
                     } else {
                         Player target = Bukkit.getPlayer(name);
-                        User tuser = NECore.getUserManager().getTempUser(target.getUniqueId());
+                        UserModel tuser = NECore.getUserRegistry().getUser(target.getUniqueId());
 
                         tuser.setDisplayName(nick);
                         target.setDisplayName(nname);
